@@ -1,0 +1,67 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+/* BOOK LIST COMPONENT */
+.c_BookList .c_BookShelf .c_BookDetails  img{
+    height: 200px;
+    width: 138px;
+}
+
+.book-shelf-changer {
+    position: absolute;
+    top: 174px;
+    right: 50%;
+    margin-right: -78px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #3f70ac;
+    background-image: url('./icons/arrow-drop-down.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.book-shelf-changer select {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    margin-top: -7px;
+    margin-left: 5px;
+}
+
+.btn-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.btn-circle {
+    outline: none;
+    background-color: #cccccc;
+    opacity: 0.6;
+    width: 75px;
+    height: 75px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 50px;
+    box-shadow: 0px 6px 12px rgba(0,0,0,0.5);
+}
+
+.btn-circle:hover {
+    opacity: 1;
+}

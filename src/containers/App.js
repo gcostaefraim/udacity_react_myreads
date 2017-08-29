@@ -1,57 +1,51 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 import {Route} from 'react-router-dom'
-import ListContacts from './ListContacts'
-import CreateContact from './CreateContact'
-import * as ContactsAPI from './utils/ContactsAPI'
+import BookList from '../components/BookList'
+import * as BooksAPI from '../utils/BooksAPI'
+import BookFind from "../components/BookFind";
+import Header from "./Header";
 
 class App extends Component {
 
-    state = {
-        contacts: []
+    constructor(){
+        super();
+
+        this.state = {
+            myBooks: [],
+            allkBooks: []
+        }
     }
 
     componentDidMount() {
-        ContactsAPI.getAll().then((contacts) => {
-            this.setState({contacts})
+        BooksAPI.getAll().then((books) => {
+            this.setState({myBooks: books})
         })
     }
 
-    removeContact = (contact) => {
-        this.setState((state) => ({
-            contacts: state.contacts.filter((c) => c.id !== contact.id)
-        }))
-
-        ContactsAPI.remove(contact)
-    }
-
-    createContact(contact){
-        ContactsAPI.create(contact).then(contact => {
-            this.setState(state => ({
-                contacts: state.contacts.concat([ contact ])
-            }))
+    updateBook = (book) => {
+        this.setState((prevBooks) => {
+            myBooks: () => prevBooks.map((mapBook) => mapBook.id === book.id ? mapBook : book)
         })
+        BooksAPI.update(book, book.shelf)
     }
 
     render() {
         return (
             <div className="app">
+                <Header/>
                 <Route exact path='/' render={() => (
-                    <ListContacts
-                        onDeleteContact={this.removeContact}
-                        contacts={this.state.contacts}
+                    <BookList
+                        books={this.state.myBooks}
+                        onUpdateBook={this.updateBook}
                     />
                 )}
                 />
-                <Route
-                    path='/create'
-                    render={({ history }) => (
-                        <CreateContact
-                            onCreateContact={(contact) => {
-                                this.createContact(contact)
-                                history.push('/')
-                            }}
-                        />
-                    )}
+                <Route exact path='/find' render={() => (
+                    <BookFind
+                         onBooksRefresh={this.booksRefresh}
+                        // onUpdateBook={this.updateBook}
+                    />
+                )}
                 />
             </div>
         )

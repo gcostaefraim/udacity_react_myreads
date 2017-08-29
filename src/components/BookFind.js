@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import * as BooksAPI from '../utils/BooksAPI'
-import BookDetails from "./BookDetails";
+import BookDetails from './BookDetails'
+import AutoComplete from './AutoComplete'
 
 class BookFind extends Component {
-
     // constructor(props) {
     //     super(props);
     //     this.state ={
@@ -11,49 +11,37 @@ class BookFind extends Component {
     //         termSearch : ''
     //     }
     // }
-    state = {
-        books: [],
-        termSearch : ''
-    }
-
-    componentDidMount() {
-        BooksAPI.search('A', 50).then(books => {
-            this.setState({books})
-        })
-        console.log('Entrou AQUI')
+    constructor(props){
+        super(props)
+        this.state = {
+            books: [],
+            termSearch : '',
+        }
     }
 
     updateBook = (book) => {
-        this.setState((prevBooks) => {
-            books: () => prevBooks.map((mBook) =>  mBook.id === book.id ? mBook : book)
+        BooksAPI.update(book, book.shelf).then((result) => {
+            console.log(result)
         })
-        BooksAPI.update(book, book.shelf)
     }
 
-    handleChange = (term) => this.setState({termSearch: term})
 
-    search = () => {
-        BooksAPI.search(this.state.termSearch, 50).then(books => {
-            this.setState({books})
-        })
+    search = (term) => {
+        if(term.trim().length > 0) {
+            BooksAPI.search(term, 50).then((books) => {
+                this.setState({books: books.error === undefined ? books : []})
+            })
+        }
     }
 
     render() {
         return (
             <div className="c_BookFind">
+                <teste />
                 <div className="row">
                     <div className="col-sm-7"/>
-                    <div className="col-sm-3">
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Search..."
-                            value={this.state.termSearch}
-                            onChange={event => this.handleChange(event.target.value)}
-                        />
-                    </div>
-                    <div className="col-sm-2">
-                        <button className="btn btn-success" onClick={this.search}>Buscar</button>
+                    <div className="col-sm-5">
+                        <AutoComplete onSearch={this.search}/>
                     </div>
                     <div className="col-sm-12">
                         <h4 className="text-info">All Books</h4>
@@ -67,6 +55,15 @@ class BookFind extends Component {
                     </div>
                 </div>
             </div>
+        )
+    }
+}
+
+
+class teste extends Component{
+    render(){
+        return(
+            <h1>Olá teste</h1>
         )
     }
 }

@@ -29,8 +29,6 @@ class BookList extends Component {
         const bookswantToRead = books.filter(value => value.shelf === 'wantToRead')
         const booksRead = books.filter(value => value.shelf === 'read')
 
-        console.log(books)
-
         return (
             <div className="c_BookList">
                 <div className="row">

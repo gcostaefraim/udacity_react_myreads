@@ -10,7 +10,7 @@ class BookList extends Component {
     }
 
 
-    search = term => this.setState({queryFilter: term})
+    search = (term) => this.setState({queryFilter: term})
 
     render() {
         // DESCOMPACTANDO OBJETOS. ISSO É UMA BOA PRÁTICA PARA PERFORMANCE
@@ -18,6 +18,7 @@ class BookList extends Component {
         const {onUpdateBook} = this.props
 
         let books
+
         if (queryFilter) {
             const match = new RegExp(escapeRegExp(queryFilter.trim()), 'i')
             books = this.props.books.filter(book => match.test(book.title))
@@ -43,12 +44,13 @@ class BookList extends Component {
                     </div>
                     <div className="col-sm-12">
                         <BookShelf books={booksCurrentlyReading} title="Currently Reading" onUpdateBook={onUpdateBook}/>
+
                         <BookShelf books={bookswantToRead} title="Want to Read" onUpdateBook={onUpdateBook}/>
+
                         <BookShelf books={booksRead} title="Read" onUpdateBook={onUpdateBook}/>
+
                         {/*<button className="btn btn-circle btn-float">+</button>*/}
-                        <Link
-                            to='/find'
-                            className="btn btn-circle btn-float">+</Link>
+                        <Link to='/find' className="btn btn-circle btn-float">+</Link>
                     </div>
                 </div>
             </div>

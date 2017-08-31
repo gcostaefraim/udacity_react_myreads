@@ -13,7 +13,10 @@ body {
 
 
 /* BOOK LIST COMPONENT */
-.c_BookList .c_BookShelf .c_BookDetails  img{
+.c_BookDetails{
+    height: 270px;
+}
+.c_BookDetails  img{
     height: 200px;
     width: 138px;
 }

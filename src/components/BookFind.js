@@ -28,9 +28,20 @@ class BookFind extends Component {
 
     search = (term) => {
         if(term.trim().length > 0) {
+            // BooksAPI.search(term, 50).then((books) => {
+            //     this.setState({books: books.error === undefined ? books : []})
+            // })
             BooksAPI.search(term, 50).then((books) => {
+                books = books.map((mapBook) => {
+                    const myBook = this.props.myBooks.findById(mapBook.id);
+                    mapBook.shelf = myBook ? myBook.shelf : undefined;
+                    return mapBook
+                })
+
                 this.setState({books: books.error === undefined ? books : []})
+                console.log(this.state.unlinkedBooks)
             })
+
         }
     }
 

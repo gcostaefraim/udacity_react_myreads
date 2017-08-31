@@ -5,10 +5,6 @@ class NavSideBar extends Component {
     render() {
         return (
             <div className="bd-sidebar">
-                <form className="form-inline bd-search d-flex align-items-center">
-                    <input className="form-control mr-sm-2" type="text" placeholder="Search"
-                           aria-label="Search"/>
-                </form>
                 <nav>
                     <ul className="nav flex-column">
                         <li className="nav-item">

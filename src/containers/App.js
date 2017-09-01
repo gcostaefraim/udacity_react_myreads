@@ -13,39 +13,45 @@ class App extends Component {
         super();
 
         this.state = {
-            myBooks: [],
-            unlinkedBooks: []
-        }
 
-        this.MyBooks = {
-            findById: (id) => this.state.myBooks.find((element) => element.id === id)
+            myBooks: {
+                list: [],
+                findById: this._myBookFindById,
+                reload: this._myBookReload,
+                update: this._myBookUpdate,
+
+            },
         }
 
     }
 
-    myBookFindById = (id) => this.state.myBooks.find((element) => element.id === id)
+    _myBookFindById = (id) => this.state.myBooks.list.find((element) => element.id === id);
 
+    _myBookReload = () => BooksAPI.getAll().then((books) => {
+        this.setState((prev) => {
+            prev.myBooks.list = books;
 
-    componentDidMount() {
-        BooksAPI.getAll().then((books) => {
-            this.setState({myBooks: books})
-
-
-
-
-        });
-
-    }
-
-    updateBook = (book) => {
-        this.setState((prevBooks) => {
-            myBooks: () => prevBooks.map((mapBook) => mapBook.id === book.id ? mapBook : book)
+            return {
+                myBooks: prev.myBooks
+            }
         })
+    });
+
+    _myBookUpdate = (book) => {
+        this.forceUpdate()
         BooksAPI.update(book, book.shelf);
     }
 
+
+
+    componentDidMount() {
+        this.state.myBooks.reload();
+    }
+
+
     render() {
-        console.log("render")
+        console.log("--> Renderizou APP.js")
+
         return (
             <div className="app">
                 <header>
@@ -57,14 +63,14 @@ class App extends Component {
                 <div className="col-sm-9 col-md-10" style={{paddingTop: 70, paddingLeft: 30}}>
                     <Route exact path='/' render={() => (
                         <BookList
-                            books={this.state.myBooks}
-                            onUpdateBook={this.updateBook}
+                            books={this.state.myBooks.list}
+                            onUpdateBook={this.state.myBooks.update}
                         />
                     )}
                     />
                     <Route exact path='/find' render={() => (
                         <BookFind
-                            myBooks={this.MyBooks}
+                            myBooks={this.state.myBooks}
                             onBooksRefresh={this.booksRefresh}
                             // onUpdateBook={this.updateBook}
                         />

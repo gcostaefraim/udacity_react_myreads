@@ -13,6 +13,9 @@ class BookList extends Component {
     search = (term) => this.setState({queryFilter: term})
 
     render() {
+        console.log('--> Renderizou BookList.js');
+
+
         // DESCOMPACTANDO OBJETOS. ISSO É UMA BOA PRÁTICA PARA PERFORMANCE
         const {queryFilter} = this.state
         const {onUpdateBook} = this.props
@@ -31,6 +34,7 @@ class BookList extends Component {
         const booksRead = books.filter(value => value.shelf === 'read')
 
         return (
+
             <div className="c_BookList">
                 <div className="row">
                     <div className="col-sm-8"/>

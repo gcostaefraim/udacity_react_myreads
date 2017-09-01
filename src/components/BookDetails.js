@@ -12,7 +12,6 @@ class BookDetails extends Component {
     render() {
         const {book} = this.props;
 
-
         return (
             <div className="c_BookDetails text-center">
                 <div>

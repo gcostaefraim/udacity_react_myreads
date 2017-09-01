@@ -22,8 +22,11 @@ class BookFind extends Component {
     updateBook = (book) => {
         BooksAPI.update(book, book.shelf).then((result) => {
             console.log(result)
+            this.props.myBooks.reload();
+            console.log("Atualizou Livro")
         })
     }
+
 
 
     search = (term) => {
@@ -46,6 +49,8 @@ class BookFind extends Component {
     }
 
     render() {
+        console.log('--> Renderizou BookFind.js')
+
         return (
             <div className="c_BookFind">
                 <teste />

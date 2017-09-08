@@ -2,12 +2,12 @@ import React, {Component} from 'react'
 import {Route} from 'react-router-dom'
 import BookList from '../components/BookList'
 import * as BooksAPI from '../utils/BooksAPI'
-import BookFind from "../components/BookFind";
-import NavTopBar from "./NavTopBar";
-import NavSideBar from "./NavSideBar";
+import BookSearch from '../components/BookSearch';
+import NavTopBar from './NavTopBar';
+import NavSideBar from './NavSideBar';
 
-class App extends Component {
 
+export default class App extends Component {
 
     constructor() {
         super();
@@ -16,16 +16,15 @@ class App extends Component {
 
             myBooks: {
                 list: [],
-                findById: this._myBookFindById,
+                findById: this._myBookSearchById,
                 reload: this._myBookReload,
-                update: this._myBookUpdate,
-
+                update: this._myBookUpdate
             },
         }
 
     }
 
-    _myBookFindById = (id) => this.state.myBooks.list.find((element) => element.id === id);
+    _myBookSearchById = (id) => this.state.myBooks.list.find((element) => element.id === id);
 
     _myBookReload = () => BooksAPI.getAll().then((books) => {
         this.setState((prev) => {
@@ -43,14 +42,12 @@ class App extends Component {
     }
 
 
-
     componentDidMount() {
         this.state.myBooks.reload();
     }
 
 
     render() {
-        console.log("--> Renderizou APP.js")
 
         return (
             <div className="app">
@@ -61,25 +58,28 @@ class App extends Component {
                     <NavSideBar/>
                 </div>
                 <div className="col-sm-9 col-md-10" style={{paddingTop: 70, paddingLeft: 30}}>
-                    <Route exact path='/' render={() => (
-                        <BookList
-                            books={this.state.myBooks.list}
-                            onUpdateBook={this.state.myBooks.update}
-                        />
-                    )}
+
+                    <Route
+                        exact
+                        path="/"
+                        render={() => (
+                            <BookList
+                                books={this.state.myBooks.list}
+                                onUpdateBook={this.state.myBooks.update}
+                            />
+                        )}
                     />
-                    <Route exact path='/find' render={() => (
-                        <BookFind
-                            myBooks={this.state.myBooks}
-                            onBooksRefresh={this.booksRefresh}
-                            // onUpdateBook={this.updateBook}
-                        />
-                    )}
+
+                    <Route
+                        exact
+                        path="/search"
+                        render={() => (
+                            <BookSearch myBooks={this.state.myBooks}/>
+                        )}
+
                     />
                 </div>
             </div>
         )
     }
 }
-
-export default App;

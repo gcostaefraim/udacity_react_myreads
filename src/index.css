@@ -45,53 +45,28 @@ body {
     margin-left: 5px;
 }
 
-.btn-float {
+.bd-sidebar {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    width: inherit;
+    margin-top: 70px;
+    border-right: 1px solid rgba(0, 0, 0, .1);
+    background-color: #32383e;
 }
 
-.btn-circle {
-    outline: none;
-    background-color: #cccccc;
-    opacity: 0.6;
-    width: 75px;
-    height: 75px;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 12px;
-    line-height: 1.428571429;
-    border-radius: 50px;
-    box-shadow: 0px 6px 12px rgba(0,0,0,0.5);
+.bd-sidebar nav .nav-link {
+    color: #c8c8c8;
 }
 
-.btn-circle:hover {
-    opacity: 1;
+.bd-sidebar nav .nav-item {
+    border: 1px solid rgba(0, 0, 0, 0.6);
 }
 
-
-
-.menu {
-    position: absolute;
-    z-index: 1000;
-    box-sizing: border-box;
-    width: 100%;
-    border: 1px solid #cccccc;
-    background-color: white;
+.bd-sidebar nav .nav-link.active {
+    color: #c8c8c8;
+    font-size: 100%;
+    font-weight: 500;
 }
 
-.item {
-    padding: 2px 6px;
-    cursor: default;
-}
-
-.item-highlighted {
-    color: white;
-    background-color: #4095bf;
-}
-
-.item-header {
-    background-color: #eeeeee;
-    color: #454545;
-    font-weight: bold;
+.bd-sidebar nav .nav-link:hover {
+    color: #ececec;
 }

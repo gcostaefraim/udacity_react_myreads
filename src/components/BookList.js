@@ -13,7 +13,6 @@ class BookList extends Component {
     search = (term) => this.setState({queryFilter: term})
 
     render() {
-        console.log('--> Renderizou BookList.js');
 
 
         // DESCOMPACTANDO OBJETOS. ISSO É UMA BOA PRÁTICA PARA PERFORMANCE
@@ -22,8 +21,8 @@ class BookList extends Component {
 
         let books
 
-        if (queryFilter) {
-            const match = new RegExp(escapeRegExp(queryFilter.trim()), 'i')
+        if (this.state.queryFilter) {
+            const match = new RegExp(escapeRegExp(this.state.queryFilter.trim()), 'i')
             books = this.props.books.filter(book => match.test(book.title))
         } else {
             books = this.props.books
@@ -43,18 +42,17 @@ class BookList extends Component {
                             type="text"
                             className="form-control"
                             placeholder="Search..."
-                            value={queryFilter}
+                            value={this.state.queryFilter}
                             onChange={event => this.search(event.target.value)}/>
                     </div>
                     <div className="col-sm-12">
-                        <BookShelf books={booksCurrentlyReading} title="Currently Reading" onUpdateBook={onUpdateBook}/>
 
-                        <BookShelf books={bookswantToRead} title="Want to Read" onUpdateBook={onUpdateBook}/>
+                        <BookShelf books={booksCurrentlyReading} title="Currently Reading" onUpdateBook={this.props.onUpdateBook}/>
 
-                        <BookShelf books={booksRead} title="Read" onUpdateBook={onUpdateBook}/>
+                        <BookShelf books={bookswantToRead} title="Want to Read" onUpdateBook={this.props.onUpdateBook}/>
 
-                        {/*<button className="btn btn-circle btn-float">+</button>*/}
-                        <Link to='/find' className="btn btn-circle btn-float">+</Link>
+                        <BookShelf books={booksRead} title="Read" onUpdateBook={this.props.onUpdateBook}/>
+
                     </div>
                 </div>
             </div>

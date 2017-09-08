@@ -13,15 +13,6 @@ class NavSideBar extends Component {
                         <li className="nav-item">
                             <Link to="/search" className="nav-link">Search Page</Link>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Currently Reading</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Want to Read</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Read</a>
-                        </li>
                     </ul>
                 </nav>
             </div>

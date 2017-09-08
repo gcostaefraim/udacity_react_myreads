@@ -17,15 +17,6 @@ class BookShelf extends Component {
                     ))}
                 </div>
             </div>
-            // <div className="card" style={{marginTop:'15px'}}>
-            //     <div className="card-header bg-success">
-            //         <div className="card-title">
-            //             <h4>{title}</h4>
-            //         </div>
-            //     </div>
-            //     <div className="card-body">
-            //     </div>
-            // </div>
         )
     }
 }

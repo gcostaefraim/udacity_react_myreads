@@ -13,26 +13,16 @@ export default class App extends Component {
         super();
 
         this.state = {
-
-            myBooks: {
-                list: [],
-                findById: this._myBookSearchById,
-                reload: this._myBookReload,
-                update: this._myBookUpdate
-            },
+            myBooks: []
         }
 
     }
 
-    _myBookSearchById = (id) => this.state.myBooks.list.find((element) => element.id === id);
+    _myBookFindById = (id) => this.state.myBooks.find((element) => element.id === id);
 
     _myBookReload = () => BooksAPI.getAll().then((books) => {
-        this.setState((prev) => {
-            prev.myBooks.list = books;
-
-            return {
-                myBooks: prev.myBooks
-            }
+        this.setState({
+            myBooks: books
         })
     });
 
@@ -43,7 +33,7 @@ export default class App extends Component {
 
 
     componentDidMount() {
-        this.state.myBooks.reload();
+        this._myBookReload();
     }
 
 
@@ -64,8 +54,8 @@ export default class App extends Component {
                         path="/"
                         render={() => (
                             <BookList
-                                books={this.state.myBooks.list}
-                                onUpdateBook={this.state.myBooks.update}
+                                books={this.state.myBooks}
+                                onUpdateBook={this._myBookUpdate}
                             />
                         )}
                     />
@@ -74,7 +64,7 @@ export default class App extends Component {
                         exact
                         path="/search"
                         render={() => (
-                            <BookSearch myBooks={this.state.myBooks}/>
+                            <BookSearch onReload={this._myBookReload} onFindById={this._myBookFindById} />
                         )}
 
                     />

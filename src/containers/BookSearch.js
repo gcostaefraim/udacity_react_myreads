@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import * as BooksAPI from '../utils/BooksAPI'
-import BookDetails from './BookDetails'
+import BookDetails from '../components/BookDetails'
 import Spinner from 'react-spinkit'
 import {Debounce} from 'react-throttle'
 

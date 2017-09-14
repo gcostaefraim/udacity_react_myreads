@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
-import BookList from '../components/BookList';
+import BookList from './BookList';
 import * as BooksAPI from '../utils/BooksAPI';
-import BookSearch from '../components/BookSearch';
-import NavTopBar from './NavTopBar';
-import NavSideBar from './NavSideBar';
+import BookSearch from './BookSearch';
+import NavTopBar from '../components/NavTopBar';
+import NavSideBar from '../components/NavSideBar';
 
 
 export default class App extends Component {

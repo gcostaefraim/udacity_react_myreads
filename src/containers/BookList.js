@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import BookShelf from './BookShelf'
+import BookShelf from '../components/BookShelf'
 import escapeRegExp from 'escape-string-regexp'
 
 class BookList extends Component {

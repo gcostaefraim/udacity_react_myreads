@@ -27,8 +27,7 @@ export default class App extends Component {
     });
 
     _myBookUpdate = (book) => {
-        this.forceUpdate()
-        BooksAPI.update(book, book.shelf);
+        BooksAPI.update(book, book.shelf).then(() => this._myBookReload());
     }
 
 

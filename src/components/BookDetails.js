@@ -15,8 +15,10 @@ export default class BookDetails extends Component {
 
 
     update = (book, shelf) => {
-        book.shelf = shelf
-        this.props.onUpdateBook(book)
+        if(book.shelf !== shelf) {
+            book.shelf = shelf
+            this.props.onUpdateBook(book)
+        }
     }
 
 

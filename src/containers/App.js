@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import {Route} from 'react-router-dom'
-import BookList from '../components/BookList'
-import * as BooksAPI from '../utils/BooksAPI'
+import React, {Component} from 'react';
+import {Route} from 'react-router-dom';
+import BookList from '../components/BookList';
+import * as BooksAPI from '../utils/BooksAPI';
 import BookSearch from '../components/BookSearch';
 import NavTopBar from './NavTopBar';
 import NavSideBar from './NavSideBar';

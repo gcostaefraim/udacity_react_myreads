@@ -90,8 +90,6 @@ class BookSearch extends Component {
                 </div>
             </div>
         )
-
-        console.log('--> Renderizou BookSearch.js')
     }
 }
 

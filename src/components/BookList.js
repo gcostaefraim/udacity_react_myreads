@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import BookShelf from './BookShelf'
 import escapeRegExp from 'escape-string-regexp'
-import {Link} from 'react-router-dom'
 
 class BookList extends Component {
 
@@ -13,11 +12,6 @@ class BookList extends Component {
     search = (term) => this.setState({queryFilter: term})
 
     render() {
-
-
-        // DESCOMPACTANDO OBJETOS. ISSO É UMA BOA PRÁTICA PARA PERFORMANCE
-        const {queryFilter} = this.state
-        const {onUpdateBook} = this.props
 
         let books
 

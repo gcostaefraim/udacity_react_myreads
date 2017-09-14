@@ -40,33 +40,40 @@ export default class App extends Component {
 
         return (
             <div className="app">
-                <header>
+                <nav className="navbar navbar-default navbar-fixed-top">
                     <NavTopBar/>
-                </header>
-                <div className="col-sm-3 col-md-2">
-                    <NavSideBar/>
-                </div>
-                <div className="col-sm-9 col-md-10" style={{paddingTop: 70, paddingLeft: 30}}>
+                </nav>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-sm-3 col-md-2">
+                            <NavSideBar/>
+                        </div>
+                        <div className="col-sm-9 col-md-10" style={{paddingTop: 70, paddingLeft: 30}}>
 
-                    <Route
-                        exact
-                        path="/"
-                        render={() => (
-                            <BookList
-                                books={this.state.myBooks}
-                                onUpdateBook={this._myBookUpdate}
+                            <Route
+                                exact
+                                path="/"
+                                render={() => (
+                                    <BookList
+                                        books={this.state.myBooks}
+                                        onUpdateBook={this._myBookUpdate}
+                                    />
+                                )}
                             />
-                        )}
-                    />
 
-                    <Route
-                        exact
-                        path="/search"
-                        render={() => (
-                            <BookSearch onReload={this._myBookReload} onFindById={this._myBookFindById} />
-                        )}
+                            <Route
+                                exact
+                                path="/search"
+                                render={() => (
+                                    <BookSearch
+                                        onReload={this._myBookReload}
+                                        onFindById={this._myBookFindById}
+                                    />
+                                )}
 
-                    />
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
         )

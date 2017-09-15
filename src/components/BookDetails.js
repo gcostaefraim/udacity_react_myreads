@@ -3,11 +3,7 @@ import PropTypes from 'prop-types'
 
 export default class BookDetails extends Component {
 
-    constructor(props) {
-        super(props)
-        console.log(this.props.teste)
-    }
-
+    
     static propTypes = {
         book: PropTypes.object.isRequired,
         onUpdateBook: PropTypes.func.isRequired,
@@ -37,7 +33,7 @@ export default class BookDetails extends Component {
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
                             <option value="read">Read</option>
-                            <option value="">None</option>
+                            <option value="none">None</option>
                         </select>
                     </div>
                 </div>

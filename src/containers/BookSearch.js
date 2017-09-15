@@ -17,9 +17,7 @@ class BookSearch extends Component {
 
     updateBook = (book) => {
         BooksAPI.update(book, book.shelf).then((result) => {
-            console.log(result)
             this.props.onReload();
-            console.log("Atualizou Livro")
         })
     }
 
@@ -39,7 +37,7 @@ class BookSearch extends Component {
 
                     books = books.map((mapBook) => {
                         const myBook = this.props.onFindById(mapBook.id);
-                        mapBook.shelf = myBook ? myBook.shelf : undefined;
+                        mapBook.shelf = myBook ? myBook.shelf : 'none';
                         return mapBook
                     })
 
@@ -52,7 +50,6 @@ class BookSearch extends Component {
     }
 
     render() {
-
         const noResult = !this.state.loading && this.state.termSearch.length > 0 && this.state.books.length === 0;
         const noSearch = !this.state.loading && this.state.termSearch.length === 0 && this.state.books.length === 0;
 

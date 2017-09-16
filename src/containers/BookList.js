@@ -1,8 +1,15 @@
 import React, {Component} from 'react'
 import BookShelf from '../components/BookShelf'
 import escapeRegExp from 'escape-string-regexp'
+import PropTypes from 'prop-types'
 
 class BookList extends Component {
+
+    static propTypes = {
+        books: PropTypes.array.isRequired,
+        onUpdateBook: PropTypes.func.isRequired,
+    }
+
 
     state = {
         queryFilter: ''
@@ -54,5 +61,5 @@ class BookList extends Component {
     }
 }
 
-export default BookList;
+export default BookList
 

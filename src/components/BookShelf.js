@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import BookDetails from './BookDetails'
-import PropTypes  from 'prop-types';
+import PropTypes  from 'prop-types'
 
 export default  class BookShelf extends Component {
 
@@ -12,7 +12,7 @@ export default  class BookShelf extends Component {
 
     render() {
 
-        const {books, title, onUpdateBook} = this.props;
+        const {books, title, onUpdateBook} = this.props
 
         return (
             <div className="c_BookShelf">

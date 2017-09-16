@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
-import BookList from './BookList';
-import * as BooksAPI from '../utils/BooksAPI';
-import BookSearch from './BookSearch';
-import NavTopBar from '../components/NavTopBar';
-import NavSideBar from '../components/NavSideBar';
+import React, {Component} from 'react'
+import {Route} from 'react-router-dom'
+import BookList from './BookList'
+import * as BooksAPI from '../utils/BooksAPI'
+import BookSearch from './BookSearch'
+import NavTopBar from '../components/NavTopBar'
+import NavSideBar from '../components/NavSideBar'
 
 
 export default class App extends Component {
 
     constructor() {
-        super();
+        super()
 
         this.state = {
             myBooks: []
@@ -18,21 +18,24 @@ export default class App extends Component {
 
     }
 
-    _myBookFindById = (id) => this.state.myBooks.find((element) => element.id === id);
+    _myBookFindById = (id) => this.state.myBooks.find((element) => element.id === id)
 
     _myBookReload = () => BooksAPI.getAll().then((books) => {
         this.setState({
             myBooks: books
         })
-    });
+    })
 
     _myBookUpdate = (book) => {
-        BooksAPI.update(book, book.shelf).then(() => this._myBookReload());
+        BooksAPI.update(book, book.shelf).then(() => {
+            this.setState(state => ({
+                myBooks: state.myBooks.filter(b => b.id !== book.id).concat(book)
+            }))
+        })
     }
 
-
     componentDidMount() {
-        this._myBookReload();
+        this._myBookReload()
     }
 
 

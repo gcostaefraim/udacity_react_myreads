@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 export default class BookDetails extends Component {
 
-    
+
     static propTypes = {
         book: PropTypes.object.isRequired,
         onUpdateBook: PropTypes.func.isRequired,

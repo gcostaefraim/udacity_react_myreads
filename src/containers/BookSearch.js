@@ -3,6 +3,7 @@ import * as BooksAPI from '../utils/BooksAPI'
 import BookDetails from '../components/BookDetails'
 import Spinner from 'react-spinkit'
 import {Debounce} from 'react-throttle'
+import PropTypes from 'prop-types'
 
 class BookSearch extends Component {
 
@@ -15,9 +16,16 @@ class BookSearch extends Component {
         }
     }
 
+
+    static propTypes = {
+        onFindById: PropTypes.func.isRequired,
+        onReload: PropTypes.func.isRequired,
+    }
+
+
     updateBook = (book) => {
         BooksAPI.update(book, book.shelf).then((result) => {
-            this.props.onReload();
+            this.props.onReload()
         })
     }
 
@@ -25,8 +33,7 @@ class BookSearch extends Component {
     search = (e) => {
         const term = e.target.value
 
-        this.setState({termSearch : term})
-        this.setState({books: []})
+        this.setState({termSearch : term, books: []})
 
         if (term.trim().length > 0) {
 
@@ -36,8 +43,8 @@ class BookSearch extends Component {
                 if (books.length > 0) {
 
                     books = books.map((mapBook) => {
-                        const myBook = this.props.onFindById(mapBook.id);
-                        mapBook.shelf = myBook ? myBook.shelf : 'none';
+                        const myBook = this.props.onFindById(mapBook.id)
+                        mapBook.shelf = myBook ? myBook.shelf : 'none'
                         return mapBook
                     })
 
@@ -50,8 +57,8 @@ class BookSearch extends Component {
     }
 
     render() {
-        const noResult = !this.state.loading && this.state.termSearch.length > 0 && this.state.books.length === 0;
-        const noSearch = !this.state.loading && this.state.termSearch.length === 0 && this.state.books.length === 0;
+        const noResult = !this.state.loading && this.state.termSearch.length > 0 && this.state.books.length === 0
+        const noSearch = !this.state.loading && this.state.termSearch.length === 0 && this.state.books.length === 0
 
         return (
             <div className="c_BookSearch">
@@ -91,9 +98,5 @@ class BookSearch extends Component {
 }
 
 const If = ({condition, children}) => condition && children ? children : false
-
-
-// const If = ({ test, children }) => (test ? children : false);
-
 
 export default BookSearch
